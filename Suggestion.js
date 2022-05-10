@@ -18,7 +18,7 @@ export default function Suggestion({ $target, initialState, onSelect }) {
 		<ul>${items
       .map(
         (item, index) =>
-          `<li data-index="${index}" onclick=${}${
+          `<li data-index="${index}" ${
             selectedIndex === index
               ? 'class="Suggestion__item--selected"'
               : null
@@ -34,4 +34,6 @@ export default function Suggestion({ $target, initialState, onSelect }) {
   };
 
   this.render();
+
+  window.addEventListener("keyup", ({ key }) => {});
 }
