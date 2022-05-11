@@ -11,7 +11,7 @@ export default function Suggestion({ $target, initialState, onSelect }) {
   };
 
   this.render = () => {
-    const { items = [], selectedIndex } = this.state;
+    const { items, selectedIndex } = this.state;
     if (items.length > 0) {
       this.$element.style.display = "block";
       this.$element.innerHTML = `
@@ -35,5 +35,29 @@ export default function Suggestion({ $target, initialState, onSelect }) {
 
   this.render();
 
-  window.addEventListener("keyup", ({ key }) => {});
+  window.addEventListener("keydown", e => {
+    const { items, selectedIndex } = this.state;
+    switch (e.key) {
+      case "ArrowUp":
+        e.preventDefault();
+        this.setState({
+          ...this.state,
+          selectedIndex:
+            selectedIndex > 0 ? selectedIndex - 1 : items.length - 1
+        });
+        break;
+      case "ArrowDown":
+        console.log(items);
+        console.log(selectedIndex);
+        e.preventDefault();
+        this.setState({
+          selectedIndex:
+            selectedIndex < items.length - 1 ? selectedIndex + 1 : 0
+        });
+        break;
+      case "Enter":
+        onSelect(selectedIndex);
+        break;
+    }
+  });
 }

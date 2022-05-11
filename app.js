@@ -4,7 +4,8 @@ import { fetchLanguages } from "./api.js";
 
 export default function App({ $target }) {
   this.state = {
-    fetchedLanguages: []
+    fetchedLanguages: [],
+    selectedLanguages: []
   };
 
   const searchInput = new SearchInput({
@@ -21,7 +22,8 @@ export default function App({ $target }) {
     initialState: {
       selectedIndex: 0,
       items: []
-    }
+    },
+    onSelect: selectedIndex => {}
   });
 
   this.setState = nextState => {

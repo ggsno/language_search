@@ -17,6 +17,7 @@ export default function SearchInput({ $target, initialState, onChange }) {
   this.render();
 
   this.$element.addEventListener("keyup", e => onChange(e.target.value));
+  this.$element.addEventListener("submit", e => e.preventDefault());
   $target.appendChild(this.$element);
 
   document.querySelector(".SearchInput__input").focus();
